@@ -1,4 +1,4 @@
-# Team Names:
+# Team Names: Peter, Victoria
 # Course: CS151, Dr. Rajeev
 # Lab Number: 11
 # Problem Summary: Compare iterative and recursive implementations of fibonacci
@@ -122,6 +122,29 @@ def binary_search_iterative(sorted_list, value):
 def binary_search_recursive(sorted_list, value, start, end):
 
     # TODO: Implement this function using recursion
+    # sorted_list = [1,3,4,5,7,8,10]
+    start = 0
+    end = len(sorted_list) - 1
+    if end > 0:
+        # find index at middle of range (use integer division)
+        mid = (start + end)//2
+        end = end - 1
+        # if value is at the middle index
+        if sorted_list[mid] == value:
+
+            # found the value: return the index
+            return mid
+
+        # else if value is smaller than what is at middle index
+        elif value < sorted_list[mid]:
+
+            # search in first half (discard second half)
+            end = mid - 1
+
+        else:
+
+            # search in second half (discard first half)
+            start = mid + 1
 
     return -1
 
@@ -271,7 +294,6 @@ def main():
             total = time.process_time() - start
 
         elif choice == 3:
-
             # Recursive Binary Search
             n = input_int("Enter the number of searches to perform: ")
             total = time_binary_search_recursive(n)
@@ -292,3 +314,8 @@ def main():
 # ------------------------------------------------------------------------------
 main()
 # ------------------------------------------------------------------------------
+
+# Naive Recursive Fibonacci = Does not work
+# Iterative Fibonacci = 750,000
+# Binary Recursive = ~5 million
+# Iterative Binary = 750,000
